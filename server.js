@@ -1,13 +1,14 @@
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 // const logger = require('./middleware/logger');
 const morgan = require('morgan');
 const colors = require('colors')
-
+const connectDB=require('./config/db')
 
 //Load env vars
 dotenv.config({path: './config/config.env'});
-const connectDB=require('./config/db')
+
 
 //Connect to database
 connectDB();
@@ -17,6 +18,9 @@ connectDB();
 const bootcamps = require('./routes/bootcamps');
 
 const app = express();
+
+// Body parser
+app.use(express.json());
 
 // app.use(logger);
 
